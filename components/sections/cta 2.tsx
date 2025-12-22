@@ -51,7 +51,7 @@ export function CtaSection() {
               className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8"
             >
               <Button size="lg" className="h-16 px-10 text-lg font-bold rounded-full bg-white text-primary hover:bg-white/90 transition-all hover:scale-105 shadow-xl" asChild>
-                <Link href="https://calendly.com/odo-veoremy/30min?month=2025-12" target="_blank">
+                <Link href="/contact">
                   Audit Gratuit
                 </Link>
               </Button>

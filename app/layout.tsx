@@ -6,10 +6,11 @@ import { Header } from "@/components/sections/header";
 import { Footer } from "@/components/sections/footer";
 import { generateOrganizationSchema } from "@/lib/schema";
 import { NoiseOverlay } from "@/components/ui/noise-overlay";
+import { IntroLoader } from "@/components/ui/intro-loader";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const poppins = Poppins({
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700", "800", "900"],
   subsets: ["latin"],
   variable: "--font-poppins",
 });
@@ -55,6 +56,7 @@ export default function RootLayout({
           poppins.variable
         )}
       >
+        <IntroLoader />
         <NoiseOverlay />
         <Header />
         <main className="flex-1">{children}</main>

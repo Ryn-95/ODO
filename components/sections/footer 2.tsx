@@ -44,7 +44,7 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="https://calendly.com/odo-veoremy/30min?month=2025-12" target="_blank" className="group flex items-center gap-2 hover:text-primary transition-colors duration-300 w-fit">
+                <Link href="/contact" className="group flex items-center gap-2 hover:text-primary transition-colors duration-300 w-fit">
                   Audit Gratuit
                   <ArrowUpRight className="h-4 w-4 opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all duration-300" />
                 </Link>

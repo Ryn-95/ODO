@@ -2,6 +2,7 @@
 
 import { Container } from "@/components/ui/container";
 import { motion } from "framer-motion";
+import { Star } from "lucide-react";
 
 const testimonials = [
   {
@@ -38,45 +39,69 @@ const testimonials = [
 
 export function TestimonialsSection() {
   return (
-    <section className="py-12 md:py-20 bg-secondary/30 overflow-hidden relative">
+    <section className="py-24 md:py-32 bg-background overflow-hidden relative border-t border-border/50">
       <Container>
-        <motion.h2 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          className="text-2xl sm:text-3xl font-bold font-heading text-center mb-12 md:mb-16 tracking-tight md:text-5xl"
-        >
-          Ils ont <span className="text-primary">scalé</span> avec nous
-        </motion.h2>
+        <div className="text-center mb-16 md:mb-24 max-w-2xl mx-auto">
+           <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="inline-block mb-4"
+          >
+             <div className="flex items-center justify-center gap-1">
+               {[1, 2, 3, 4, 5].map((i) => (
+                 <Star key={i} className="w-5 h-5 fill-foreground text-foreground" />
+               ))}
+             </div>
+          </motion.div>
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            viewport={{ once: true }}
+            className="text-4xl md:text-5xl font-heading font-bold tracking-tight mb-6"
+          >
+            Ils ont scalé avec <span className="text-muted-foreground">nous</span>
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="text-xl text-muted-foreground"
+          >
+            La confiance ne se demande pas, elle se gagne par les résultats.
+          </motion.p>
+        </div>
       </Container>
       
       {/* Marquee Container */}
       <div className="relative w-full overflow-hidden">
-        <div className="absolute left-0 top-0 bottom-0 w-24 md:w-48 z-10 bg-gradient-to-r from-secondary/30 to-transparent pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-24 md:w-48 z-10 bg-gradient-to-l from-secondary/30 to-transparent pointer-events-none" />
+        {/* Gradient Masks */}
+        <div className="absolute left-0 top-0 bottom-0 w-32 z-10 bg-gradient-to-r from-background to-transparent pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-32 z-10 bg-gradient-to-l from-background to-transparent pointer-events-none" />
         
-        <div className="flex animate-marquee gap-6 whitespace-normal py-4 pl-4">
+        <div className="flex animate-marquee gap-8 whitespace-normal py-4 pl-4">
           {[...testimonials, ...testimonials].map((t, i) => (
             <div
               key={i}
-              className="flex-shrink-0 w-[300px] md:w-[400px] flex flex-col rounded-2xl bg-background p-8 shadow-sm border border-border/50 hover:border-primary/30 transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+              className="flex-shrink-0 w-[350px] md:w-[400px] flex flex-col rounded-3xl bg-background/50 backdrop-blur-sm p-8 border border-border/50 hover:border-primary/30 transition-all duration-300 hover:shadow-xl hover:shadow-primary/5 group"
             >
-              <div className="mb-6 flex gap-1 text-primary">
+              <div className="mb-6 flex gap-1">
                 {[1, 2, 3, 4, 5].map((star) => (
-                  <svg key={star} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
-                    <path fillRule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clipRule="evenodd" />
-                  </svg>
+                  <Star key={star} className="w-5 h-5 fill-primary text-primary" />
                 ))}
               </div>
-              <p className="flex-1 text-foreground/80 italic text-lg leading-relaxed mb-6">&quot;{t.quote}&quot;</p>
+              <p className="flex-1 text-foreground text-lg font-medium leading-relaxed mb-8 group-hover:text-primary/90 transition-colors">
+                &ldquo;{t.quote}&rdquo;
+              </p>
               <div className="flex items-center gap-4 mt-auto">
-                <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold">
+                <div className="h-12 w-12 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-lg ring-2 ring-primary/20">
                   {t.initials}
                 </div>
                 <div>
-                  <p className="font-bold font-heading text-sm">{t.author}</p>
-                  <p className="text-xs text-muted-foreground uppercase tracking-wide">{t.role}</p>
+                  <div className="font-bold font-heading">{t.author}</div>
+                  <div className="text-sm text-muted-foreground">{t.role}</div>
                 </div>
               </div>
             </div>

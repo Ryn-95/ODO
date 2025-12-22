@@ -88,7 +88,7 @@ export function Header() {
               </div>
             ))}
             <Button asChild className="rounded-full px-8 h-12 bg-primary text-primary-foreground hover:bg-primary/90 hover:shadow-[0_0_20px_rgba(37,99,235,0.3)] transition-all duration-300 text-base font-medium">
-              <Link href="https://calendly.com/odo-veoremy/30min?month=2025-12" target="_blank">Audit Gratuit</Link>
+              <Link href="/contact">Audit Gratuit</Link>
             </Button>
           </nav>
 

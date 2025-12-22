@@ -140,7 +140,7 @@ export function PricingSection() {
                 )}
                 asChild
               >
-                <Link href="https://calendly.com/odo-veoremy/30min?month=2025-12" target="_blank">
+                <Link href="/contact">
                   Choisir cette offre
                   {plan.highlight && <ArrowRight className="ml-2 h-4 w-4" />}
                 </Link>

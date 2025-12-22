@@ -85,7 +85,7 @@ export function HeroSection() {
           className="flex flex-col sm:flex-row gap-4 items-center justify-center mb-20"
         >
           <Button size="lg" className="h-12 px-8 text-base font-semibold rounded-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all shadow-xl shadow-primary/20" asChild>
-            <Link href="https://calendly.com/odo-veoremy/30min?month=2025-12" target="_blank">
+            <Link href="/contact">
               Réserver un audit
               <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
