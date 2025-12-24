@@ -26,19 +26,19 @@ export function Footer() {
             <h3 className="mb-6 text-sm font-bold uppercase tracking-widest text-foreground">Services</h3>
             <ul className="space-y-4 text-sm text-muted-foreground">
               <li>
-                <Link href="/services" className="group flex items-center gap-2 hover:text-primary transition-colors duration-300 w-fit">
+                <Link href="/#services" className="group flex items-center gap-2 hover:text-primary transition-colors duration-300 w-fit">
                   Google Ads
                   <ArrowUpRight className="h-4 w-4 opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all duration-300" />
                 </Link>
               </li>
               <li>
-                <Link href="/services" className="group flex items-center gap-2 hover:text-primary transition-colors duration-300 w-fit">
+                <Link href="/#services" className="group flex items-center gap-2 hover:text-primary transition-colors duration-300 w-fit">
                   Meta Ads
                   <ArrowUpRight className="h-4 w-4 opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all duration-300" />
                 </Link>
               </li>
               <li>
-                <Link href="/services" className="group flex items-center gap-2 hover:text-primary transition-colors duration-300 w-fit">
+                <Link href="/#services" className="group flex items-center gap-2 hover:text-primary transition-colors duration-300 w-fit">
                   TikTok Ads
                   <ArrowUpRight className="h-4 w-4 opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all duration-300" />
                 </Link>
@@ -56,25 +56,19 @@ export function Footer() {
             <h3 className="mb-6 text-sm font-bold uppercase tracking-widest text-foreground">Agence</h3>
             <ul className="space-y-4 text-sm text-muted-foreground">
               <li>
-                <Link href="/about" className="group flex items-center gap-2 hover:text-primary transition-colors duration-300 w-fit">
+                <Link href="/#about" className="group flex items-center gap-2 hover:text-primary transition-colors duration-300 w-fit">
                   À propos
                   <ArrowUpRight className="h-4 w-4 opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all duration-300" />
                 </Link>
               </li>
               <li>
-                <Link href="/case-studies" className="group flex items-center gap-2 hover:text-primary transition-colors duration-300 w-fit">
+                <Link href="/#case-studies" className="group flex items-center gap-2 hover:text-primary transition-colors duration-300 w-fit">
                   Études de cas
                   <ArrowUpRight className="h-4 w-4 opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all duration-300" />
                 </Link>
               </li>
               <li>
-                <Link href="/blog" className="group flex items-center gap-2 hover:text-primary transition-colors duration-300 w-fit">
-                  Blog
-                  <ArrowUpRight className="h-4 w-4 opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all duration-300" />
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="group flex items-center gap-2 hover:text-primary transition-colors duration-300 w-fit">
+                <Link href="/#contact" className="group flex items-center gap-2 hover:text-primary transition-colors duration-300 w-fit">
                   Contact
                   <ArrowUpRight className="h-4 w-4 opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all duration-300" />
                 </Link>
@@ -100,10 +94,12 @@ export function Footer() {
         
         <div className="flex flex-col md:flex-row justify-between items-center gap-6 pt-8 border-t border-border/50 text-sm text-muted-foreground">
           <p>&copy; {new Date().getFullYear()} ODO. Tous droits réservés.</p>
-          <div className="flex gap-6">
-            <Link href="#" className="hover:text-primary transition-colors duration-300">Twitter</Link>
-            <Link href="#" className="hover:text-primary transition-colors duration-300">LinkedIn</Link>
-            <Link href="#" className="hover:text-primary transition-colors duration-300">Instagram</Link>
+          <div className="flex items-center gap-2 bg-black/5 dark:bg-white/5 px-4 py-2 rounded-full border border-black/10 dark:border-white/10 hover:border-primary/50 transition-colors duration-300">
+             <span className="text-xs font-medium opacity-70">Site conçu par</span>
+             <Link href="https://www.9secondes.com/" target="_blank" className="text-sm font-bold text-primary hover:text-primary/80 transition-colors duration-300 flex items-center gap-1">
+               9secondes.com
+               <ArrowUpRight className="h-3 w-3" />
+             </Link>
           </div>
         </div>
       </Container>

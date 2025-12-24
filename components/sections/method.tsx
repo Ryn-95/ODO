@@ -1,8 +1,7 @@
 "use client";
 
-import { Container } from "@/components/ui/container";
-import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 const steps = [
@@ -29,99 +28,85 @@ const steps = [
 ];
 
 export function MethodSection() {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const targetRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"],
+    target: targetRef,
   });
 
-  return (
-    <section className="py-24 md:py-32 bg-background relative overflow-hidden" ref={containerRef}>
-      {/* Decorative background elements */}
-      <div className="absolute top-1/2 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-border to-transparent opacity-50" />
-      
-      <Container>
-        <div className="mb-20 max-w-3xl">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/50 border border-border/50 text-xs font-medium mb-6"
-          >
-            <span className="w-2 h-2 rounded-full bg-foreground" />
-            PROCESSUS
-          </motion.div>
-          
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-4xl md:text-6xl font-heading font-bold tracking-tight mb-6"
-          >
-            La Méthode <span className="text-muted-foreground">ODO</span>
-          </motion.h2>
-          
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            viewport={{ once: true }}
-            className="text-xl text-muted-foreground max-w-xl leading-relaxed"
-          >
-            Un framework rigoureux en 4 étapes pour transformer votre acquisition en machine de guerre.
-          </motion.p>
-        </div>
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-75%"]);
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
-          {/* Connecting Line - Desktop */}
-          <div className="hidden md:block absolute top-[3.25rem] left-[10%] w-[80%] h-[2px]">
-             <div className="absolute inset-0 border-t-2 border-dashed border-border" />
-             <motion.div 
-               initial={{ scaleX: 0 }}
-               whileInView={{ scaleX: 1 }}
-               transition={{ duration: 1.5, ease: "easeInOut" }}
-               className="absolute inset-0 border-t-2 border-dashed border-primary origin-left"
-             />
-          </div>
+  return (
+    <section ref={targetRef} className="relative h-[300vh] bg-background">
+      <div className="sticky top-0 flex h-screen items-center overflow-hidden">
+        <motion.div style={{ x }} className="flex items-center gap-12 px-4 md:px-24">
           
+          {/* Intro Section - Fixed at start of scroll */}
+          <div className="min-w-[90vw] md:min-w-[40vw] flex flex-col justify-center pr-12">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/50 border border-border/50 text-xs font-medium mb-6 w-fit"
+            >
+              <span className="w-2 h-2 rounded-full bg-foreground" />
+              PROCESSUS
+            </motion.div>
+            
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-4xl md:text-6xl font-heading font-bold tracking-tight mb-6"
+            >
+              La Méthode <span className="text-muted-foreground">ODO</span>
+            </motion.h2>
+            
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              viewport={{ once: true }}
+              className="text-xl text-muted-foreground max-w-xl leading-relaxed"
+            >
+              Un framework rigoureux en 4 étapes pour transformer votre acquisition en machine de guerre.
+            </motion.p>
+          </div>
+
+          {/* Steps Cards */}
           {steps.map((step, index) => (
-            <div key={step.number} className="relative group">
-              {/* Step Number with glow effect */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="relative mx-auto w-24 h-24 mb-8 bg-background border border-border rounded-full flex items-center justify-center z-10 group-hover:border-primary/50 transition-colors duration-500 shadow-lg shadow-black/5"
-              >
-                <div className="absolute inset-2 rounded-full border border-border/50 group-hover:border-primary/20 transition-colors" />
-                <span className="text-2xl font-bold font-mono text-muted-foreground group-hover:text-primary transition-colors">
+            <div 
+              key={step.number} 
+              className="group relative h-[450px] w-[85vw] md:w-[400px] flex-shrink-0 overflow-hidden rounded-3xl bg-secondary/5 border border-border/50 p-8 flex flex-col justify-between hover:bg-secondary/10 transition-colors duration-500"
+            >
+              <div className="absolute top-0 right-0 p-32 bg-primary/5 rounded-full blur-3xl -mr-16 -mt-16 group-hover:bg-primary/10 transition-colors duration-500" />
+              
+              <div className="relative z-10">
+                <span className="text-6xl md:text-8xl font-bold font-mono text-muted-foreground/10 group-hover:text-primary/20 transition-colors duration-500 block mb-8">
                   {step.number}
                 </span>
-                {/* Active Dot */}
-                <div className="absolute bottom-0 right-0 w-6 h-6 bg-primary rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-[0_0_15px_rgba(37,99,235,0.6)] scale-0 group-hover:scale-100 flex items-center justify-center">
-                  <div className="w-2 h-2 bg-white rounded-full" />
-                </div>
-              </motion.div>
-
-              {/* Content */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 + 0.2 }}
-                viewport={{ once: true }}
-              >
-                <h3 className="text-xl font-bold mb-4 group-hover:text-primary transition-colors duration-300">
+                
+                <h3 className="text-2xl md:text-3xl font-bold mb-4 group-hover:text-primary transition-colors duration-300">
                   {step.title}
                 </h3>
-                <p className="text-muted-foreground leading-relaxed text-sm md:text-base">
+              </div>
+
+              <div className="relative z-10">
+                <p className="text-muted-foreground leading-relaxed text-base md:text-lg">
                   {step.description}
                 </p>
-              </motion.div>
+                
+                <div className="w-full h-[1px] bg-border/50 mt-8 group-hover:bg-primary/30 transition-colors duration-500" />
+                <div className="flex items-center gap-2 mt-4 text-sm font-medium text-muted-foreground group-hover:text-primary transition-colors">
+                  <span>En savoir plus</span>
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="transform group-hover:translate-x-1 transition-transform">
+                    <path d="M6 12L10 8L6 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </div>
+              </div>
             </div>
           ))}
-        </div>
-      </Container>
+        </motion.div>
+      </div>
     </section>
   );
 }
