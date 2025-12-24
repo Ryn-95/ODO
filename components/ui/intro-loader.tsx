@@ -2,96 +2,115 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
-import { cn } from "@/lib/utils";
 
 export function IntroLoader() {
   const [isLoading, setIsLoading] = useState(true);
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
-    // Simulate loading time or wait for resources
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 2500); // 2.5 seconds intro
+    // Custom easing counter
+    let current = 0;
+    const timer = setInterval(() => {
+      // Non-linear increment for organic feel
+      const jump = Math.floor(Math.random() * 15) + 5;
+      current += jump;
+      
+      if (current >= 100) {
+        current = 100;
+        setCount(100);
+        clearInterval(timer);
+        setTimeout(() => setIsLoading(false), 800); // Wait a bit at 100%
+      } else {
+        setCount(current);
+      }
+    }, 150);
 
-    return () => clearTimeout(timer);
+    return () => clearInterval(timer);
   }, []);
 
   return (
     <AnimatePresence mode="wait">
       {isLoading && (
         <motion.div
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-black"
-          initial={{ opacity: 1 }}
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black text-white px-4 md:px-8"
           exit={{ 
-            opacity: 0,
-            transition: { duration: 0.8, ease: "easeInOut" }
+            y: "-100%",
+            transition: { duration: 0.8, ease: [0.83, 0, 0.17, 1] } 
           }}
         >
-          {/* Background Abstract Effect */}
-          <div className="absolute inset-0 overflow-hidden">
-            <motion.div
-              initial={{ scale: 1.2, opacity: 0 }}
-              animate={{ scale: 1, opacity: 0.2 }}
-              transition={{ duration: 2 }}
-              className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary/40 via-background to-background"
-            />
-          </div>
+          <div className="w-full h-full max-w-[1800px] mx-auto flex flex-col justify-between py-8 md:py-12">
+            
+            {/* Top Bar */}
+            <div className="flex justify-between items-start overflow-hidden">
+               <motion.span 
+                 initial={{ y: "100%" }}
+                 animate={{ y: 0 }}
+                 transition={{ duration: 0.5, delay: 0.2 }}
+                 className="text-[10px] md:text-xs font-mono text-white/40 uppercase tracking-[0.2em]"
+               >
+                 Est. 2024
+               </motion.span>
+               <motion.span 
+                 initial={{ y: "100%" }}
+                 animate={{ y: 0 }}
+                 transition={{ duration: 0.5, delay: 0.2 }}
+                 className="text-[10px] md:text-xs font-mono text-white/40 uppercase tracking-[0.2em] text-right"
+               >
+                 Paris — France
+               </motion.span>
+            </div>
 
-          <div className="relative z-10 flex flex-col items-center">
-            {/* Logo Animation */}
-            <div className="relative mb-8">
-              <motion.div
-                initial={{ width: 0 }}
-                animate={{ width: "100%" }}
-                transition={{ duration: 1.5, ease: "easeInOut" }}
-                className="absolute bottom-0 left-0 h-[2px] bg-primary"
-              />
-              <motion.h1
-                  initial={{ y: 20, opacity: 0, filter: "blur(10px)" }}
-                  animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                  className="text-7xl md:text-9xl font-heading font-bold tracking-tighter text-white"
+            {/* Center Content - Massive Typography */}
+            <div className="flex flex-col items-center justify-center flex-1">
+              <div className="overflow-hidden relative">
+                <motion.h1
+                  initial={{ y: "100%" }}
+                  animate={{ y: 0 }}
+                  transition={{ duration: 1.2, ease: [0.83, 0, 0.17, 1] }}
+                  className="text-[18vw] leading-[0.8] font-bold tracking-tighter text-white mix-blend-difference select-none"
                 >
                   ODO
                 </motion.h1>
-            </div>
-
-            {/* Loading Status / Text */}
-            <div className="flex flex-col items-center gap-4">
-              <motion.div 
-                className="h-1 w-48 bg-secondary/20 rounded-full overflow-hidden"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.5 }}
-              >
-                <motion.div
-                  className="h-full bg-primary"
-                  initial={{ width: "0%" }}
-                  animate={{ width: "100%" }}
-                  transition={{ duration: 2, ease: "easeInOut" }}
+                {/* Subtle Glow Behind */}
+                <motion.div 
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 0.15 }}
+                  transition={{ duration: 1, delay: 0.5 }}
+                  className="absolute inset-0 bg-white blur-[100px] rounded-full z-[-1]"
                 />
-              </motion.div>
-              
-              <div className="flex gap-2 overflow-hidden h-6 relative">
-                 <motion.span
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.5 }}
-                    className="text-xs font-mono tracking-[0.2em] text-muted-foreground"
-                 >
-                    AGENCE PERFORMANCE
-                 </motion.span>
               </div>
             </div>
-          </div>
 
-          {/* Glitch/Noise Overlay (Optional) */}
-          <motion.div
-            className="absolute inset-0 pointer-events-none opacity-[0.03]"
-            style={{
-                backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`
-            }}
-          />
+            {/* Bottom Bar & Counter */}
+            <div className="flex justify-between items-end overflow-hidden">
+               <div className="flex flex-col gap-2">
+                 <motion.div 
+                   initial={{ y: "100%" }}
+                   animate={{ y: 0 }}
+                   transition={{ duration: 0.5, delay: 0.3 }}
+                   className="text-xs md:text-sm text-white/60 font-medium tracking-wide"
+                 >
+                   Agence de Performance
+                 </motion.div>
+                 <motion.div 
+                   initial={{ scaleX: 0 }}
+                   animate={{ scaleX: 1 }}
+                   transition={{ duration: 0.8, delay: 0.4, ease: "circOut" }}
+                   className="h-[1px] w-full md:w-32 bg-white/30 origin-left"
+                 />
+               </div>
+
+               <motion.div 
+                  className="text-7xl md:text-9xl font-light tracking-tighter tabular-nums leading-[0.8]"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
+               >
+                 {count}%
+               </motion.div>
+            </div>
+
+          </div>
         </motion.div>
       )}
     </AnimatePresence>
