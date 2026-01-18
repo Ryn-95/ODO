@@ -17,11 +17,14 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: "ODO | Agence de Publicité à la Performance",
   description: "Agence experte en Google Ads, Meta Ads et TikTok Ads. Maximisez votre ROI avec nos stratégies d'acquisition payante.",
-  metadataBase: new URL("https://odo.fr"),
+  metadataBase: new URL("https://www.odoagency.fr"),
+  verification: {
+    google: "U9JYoteLd_vuwY6FtYsQyvpV7qGdJ8bvz1WFuybZ47Y",
+  },
   openGraph: {
     type: "website",
     locale: "fr_FR",
-    url: "https://odo.fr",
+    url: "https://www.odoagency.fr",
     title: "ODO | Agence de Publicité à la Performance",
     description: "Agence experte en Google Ads, Meta Ads et TikTok Ads. Maximisez votre ROI.",
     siteName: "ODO",
@@ -55,6 +58,7 @@ export default function RootLayout({
           poppins.variable
         )}
       >
+        <MetaPixel />
         <NoiseOverlay />
         <Header />
         <main className="flex-1">{children}</main>
