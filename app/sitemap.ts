@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://odo.fr";
+  const baseUrl = "https://www.odoagency.fr";
   const lastModified = new Date();
 
   const routes = [
