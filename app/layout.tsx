@@ -6,6 +6,7 @@ import { Header } from "@/components/sections/header";
 import { Footer } from "@/components/sections/footer";
 import { generateOrganizationSchema } from "@/lib/schema";
 import { NoiseOverlay } from "@/components/ui/noise-overlay";
+import MetaPixel from "@/components/MetaPixel";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const poppins = Poppins({
